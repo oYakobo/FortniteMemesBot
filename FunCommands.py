@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import requests
 import aiohttp
 import pynite
 from bs4 import BeautifulSoup
