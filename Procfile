@@ -1,1 +1,1 @@
-worker: Python YakobBot.py
+worker: YakobBot.py
