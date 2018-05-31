@@ -3,7 +3,6 @@ from discord.ext import commands
 import random
 import requests
 import aiohttp
-import  requests
 import pynite
 from bs4 import BeautifulSoup
 
