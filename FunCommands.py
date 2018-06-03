@@ -19,10 +19,10 @@ class FunCommands():
     @commands.command()
     async def clap(self, *, word:str):
         try:
-            if len(word) <= int(35):
+            if len(word) <= int(15):
                 x = word.replace('', ':clap:')
                 await self.client.say(x)
-            if len(word) > int(35):
+            if len(word) > int(15):
                 x = word.replace(' ', ':clap:')
                 await self.client.say(x)
         except Exception as e:
@@ -96,7 +96,6 @@ class FunCommands():
             first=int(args[0])
             second=int(args[1])
             await self.client.say(first + second)
-            await self.client.say('Quik Maths')
         except Exception as e:
             await self.client.say('`Error!` {}'.format(e))
             await self.client.say('Correct Usage: `-add 2 2`')
@@ -139,33 +138,27 @@ class FunCommands():
         r = requests.get("http://www.urbandictionary.com/define.php?term={}".format(args))
         soup = BeautifulSoup(r.content)
         x = (soup.find("div",attrs={"class":"meaning"}).text)
-        embed = discord.Embed(title='Term: {}'.format(args), description='Description:\n{}'.format(x), color=random.choice(colors))
+        embed = discord.Embed(title='Term: {}'.format(args), description='Definition:\n{}'.format(x), color=random.choice(colors))
         await self.client.say(embed=embed)
 
 
     @commands.command(pass_context=True)
     async def dog(self, ctx):
-        if ctx.message.author.id in Admins:
-            api = "https://api.thedogapi.co.uk/v2/dog.php"
-            async with aiohttp.ClientSession() as session:
-                async with session.get(api) as r:
-                    if r.status == 200:
-                        response = await r.json()
-                        embed = discord.Embed(description=None, color = random.choice(colors))
-                        embed.set_author(name = "{} here is your random dog".format(ctx.message.author.name))
-                        embed.set_image(url = response['data'][0]["url"])
-                        await self.client.say(embed = embed)
-        else:
-            await client.say('You Do Not Have Permission To Use This Command')
+        api = "https://api.thedogapi.co.uk/v2/dog.php"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(api) as r:
+                if r.status == 200:
+                    response = await r.json()
+                    embed = discord.Embed(description=None, color = random.choice(colors))
+                    embed.set_author(name = "{} here is your random dog".format(ctx.message.author.name))
+                    embed.set_image(url = response['data'][0]["url"])
+                    await self.client.say(embed = embed)
 
     @commands.command(pass_context=True)
     async def announce(self, ctx, *, strn:str):
         embed = discord.Embed(title = '{} Would Like To Announce The Following: '.format(ctx.message.author.name), description = '`{}`'.format(strn), color = random.choice(colors))
         embed.set_footer(text=ctx.message.author)
         await self.client.say(embed=embed)
-        await self.client.add_reaction(ctx.message, '<:thumbsup:447835156120862720>')
-        await self.client.add_reaction(ctx.message, '<:neutral_face:447834905129517075>')
-        await self.client.add_reaction(ctx.message, '<:thumbsdown:447834993364828162>')
 
     @commands.command(pass_context=True)
     async def stats(self, ctx, platform, name):
@@ -175,7 +168,7 @@ class FunCommands():
         duos = await player.get_duos()
         squads = await player.get_squads()
         lifetime = await player.get_lifetime_stats()
-        embed = discord.Embed(title = '{}\'s Fortnite Stats'.format(name.capitalize()), description = 'Score:{}\nGames Played:{}\nTotal Wins: {}(≈{})'.format(lifetime[6].value, lifetime[7].value, lifetime[8].value, lifetime[9].value), color=random.choice(colors))
+        embed = discord.Embed(title = '{}\'s Fortnite Stats'.format(name.capitalize()), description = 'Score: {}\nGames Played: {}\nTotal Wins: {}(≈{})'.format(lifetime[6].value, lifetime[7].value, lifetime[8].value, lifetime[9].value), color=random.choice(colors))
         embed.add_field(name = '__Solos:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(solos.top1.value, solos.kills.value, solos.kd.value))
         embed.add_field(name = '__Duos:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(duos.top1.value, duos.kills.value, duos.kd.value))
         embed.add_field(name = '__Squads:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(squads.top1.value, squads.kills.value, squads.kd.value))
