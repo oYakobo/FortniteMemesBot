@@ -13,7 +13,6 @@ startup_extensions = ['DeveloperCommands', 'AdminCommands', 'InfoCommands', 'Mod
 client.remove_command('help')
 Admins = ['285521611887607809']
 colors = [int(0xe6194b), int(0x3cb44b), int(0xffe119), int(0x0082c8), int(0xf58231), int(0x911eb4), int(0x46f0f0), int(0xf032e6), int(0xd2f53c), int(0xfabebe), int(0x008080), int(0xe6beff), int(0xaa6e28), int(0xfffac8), int(0x000000)]
-Blacklist = ['fuck', 'shit', 'arse', 'ass', 'asshole', 'bastard', 'bitch', 'bollocks', 'child-fucker', 'christ on a bike', 'christ on a cracker', 'crap', 'cunt', 'damn', 'swear word', 'frigger', 'fuck', 'goddamn', 'godsdamn', 'hell', 'holy shit', 'jesus', 'jesus Christ', 'jesus h. christ', 'jesus harold christ', 'jesus wept', 'jesus', 'mary and joseph', 'judas priest', 'motherfucker', 'nigga', 'nigger', 'shit', 'shit ass', 'shitass', 'son of a bitch', 'son of a motherless goat', 'son of a whoresweet jesus', 'twat']
 
 @client.event
 async def on_ready():
@@ -36,13 +35,6 @@ async def on_ready():
     print('\n\nLogged in as: {} - {}\nDiscord Version: {}\n'.format(client.user.name, client.user.id, discord.__version__))
     embed = discord.Embed(title='Bot Online!', description='Launched @ {}'.format(str(time.asctime( time.localtime(time.time()) ))))
     #await client.send_message(discord.Object('440304039968899072'), embed=embed)
-
-@client.event
-async def on_message(message):
-    if message.content.lower() in Blacklist:
-        await client.delete_message(message)
-        await client.send_message(message.author, 'Please Do Not Use Inappropriate Language In My Chrsitian Server')
-    await client.process_commands(message)
 
 @client.command(pass_context=True)
 async def Lockdown(ctx):
