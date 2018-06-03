@@ -168,11 +168,11 @@ class FunCommands():
         duos = await player.get_duos()
         squads = await player.get_squads()
         lifetime = await player.get_lifetime_stats()
-        embed = discord.Embed(title = '{}\'s Fortnite Stats'.format(name.capitalize()), description = 'Score: {}\nGames Played: {}\nTotal Wins: {}(≈{})'.format(lifetime[6].value, lifetime[7].value, lifetime[8].value, lifetime[9].value), color=random.choice(colors))
+        embed = discord.Embed(title = '{}\'s Fortnite Stats'.format(name.capitalize()), description = 'Score: {}\nGames Played: {}\nTotal Wins: {} (≈{})'.format(lifetime[6].value, lifetime[7].value, lifetime[8].value, lifetime[9].value), color=random.choice(colors))
         embed.add_field(name = '__Solos:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(solos.top1.value, solos.kills.value, solos.kd.value))
         embed.add_field(name = '__Duos:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(duos.top1.value, duos.kills.value, duos.kd.value))
         embed.add_field(name = '__Squads:__', value = 'Wins- {}\nKills- {}\nK/D- {}'.format(squads.top1.value, squads.kills.value, squads.kd.value))
-        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/435971749054513176/450123603585794048/fortnite-battle-royale-Fortnite2Fhome2Ffn_battle_logo-1159x974-8edd8b02d505b78febe3baacec47a83c2d521.png')
+        embed.set_thumbnail(url='https://www.bing.com/images/search?view=detailV2&ccid=uaqvn%2bAP&id=CA6749E42352A2120D057035C610068161170402&thid=OIP.uaqvn-APfF_wdZ87rAWmYwHaEe&mediaurl=http%3a%2f%2fimages.mein-mmo.de%2fmagazin%2fmedien%2f2017%2f11%2ffortnite-battle-royale-logo.jpg&exph=959&expw=1587&q=fortnite+battle+royale&simid=608031551715017384&selectedIndex=16&adlt=strict')
         embed.set_footer(text='Requested By {}'.format(ctx.message.author))
         await self.client.say(embed=embed)
 
