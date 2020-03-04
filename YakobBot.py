@@ -64,7 +64,12 @@ async def DisableLockdown(ctx):
         await client.say('That Is An Owner Command!')
 
 @client.event
-async def on_member_join(member):
+async def on_member_join(ctx, user:discord.Member):
+    global Lockdown
+    if Lockdown == True:
+        await self.client.kick(user)
+        await self.client.say('Server On Lockdown. Kicked `{}`'.format(user.name))
+    else:
         await client.send_message(discord.Object('450126176548028416'), 'Welcome {} Please Read The Rules And Have Fun.'.format(member.mention))
 
 @client.event
